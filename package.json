@@ -1,0 +1,18 @@
+{
+  "name": "boiler-plate",
+  "version": "1.0.0",
+  "description": "Boiler-plate for nextjs websites",
+  "main": "server.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "ti jhae",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^10.2.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
