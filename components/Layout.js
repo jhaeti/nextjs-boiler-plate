@@ -9,7 +9,7 @@ export const Layout = ({ children }) => {
       <Head>
         <link
           rel="preload"
-          href="/Lato/Lato-Regular.ttf"
+          href="/Josefin_Sans/static/JosefinSans-Regular.ttf"
           as="font"
           crossOrigin=""
         />

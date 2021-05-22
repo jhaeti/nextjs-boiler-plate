@@ -43,7 +43,7 @@ const Navbar = () => {
         }
 
         .container {
-          width: 80%;
+          width: 1366px;
           margin: 0 auto;
           display: flex;
           justify-content: space-between;
@@ -67,8 +67,19 @@ const Navbar = () => {
         .toggle-btn {
           display: none;
         }
+
+        // Larger Screens
+        @media only screen and (max-width: 1440px) {
+          .container {
+            width: 80%;
+          }
+        }
+
         // Mobile version
         @media only screen and (max-width: 600px) {
+          .container {
+            width: 90%;
+          }
           .toggle-btn {
             display: block;
           }
