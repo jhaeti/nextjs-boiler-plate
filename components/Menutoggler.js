@@ -77,7 +77,7 @@ const Menutoggler = () => {
           position: fixed;
           top: 0;
           right: 0;
-          background: blue;
+          background: #333;
           width: 250px;
           padding: 0;
           height: 100%;
