@@ -41,13 +41,15 @@ const Menutoggler = () => {
           transition: 0.5s all ease-in;
           display: flex;
           justify-content: center;
+          align-items: center;
           flex-direction: column;
           background: #333;
+          border-radius: 50%;
         }
 
         .menu-rotate {
           transition: 0.5s all ease-in;
-          transform: translate(-30px, -5px) rotate(180deg);
+          transform: rotate(180deg);
         }
 
         .line {
@@ -61,24 +63,22 @@ const Menutoggler = () => {
 
         .rotate {
           transition: 0.5s all ease-in;
-          transform: translateX(5px);
-          width: 22px;
         }
         .rotate:nth-child(1) {
           width: 15px;
-          transform: translate(0, 4px) rotate(-45deg);
+          transform: translate(-9px, 4px) rotate(-45deg);
         }
         .rotate:nth-child(3) {
           width: 15px;
-          transform: translate(0, -4px) rotate(45deg);
+          transform: translate(-9px, -4px) rotate(45deg);
         }
 
         ul {
           position: fixed;
           top: 0;
           right: 0;
-          background: #333;
-          width: 200px;
+          background: blue;
+          width: 250px;
           padding: 0;
           height: 100%;
           display: flex;
@@ -86,7 +86,7 @@ const Menutoggler = () => {
           align-items: center;
           flex-direction: column;
           z-index: 20;
-          transform: translateX(200px);
+          transform: translateX(250px);
           transition: 0.5s all ease-in;
           z-index: 50;
         }
