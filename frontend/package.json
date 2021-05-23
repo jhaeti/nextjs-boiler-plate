@@ -4,13 +4,14 @@
   "description": "Boiler-plate for nextjs websites",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "author": "ti jhae",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.10",
