@@ -16,7 +16,7 @@ export const Layout = ({ children }) => {
       </Head>
       <Navbar />
       {children}
-      <div>Footer</div>
+
       <style global jsx>{`
         @font-face {
           font-family: JosefinSans;

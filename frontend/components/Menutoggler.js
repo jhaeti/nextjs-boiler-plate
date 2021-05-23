@@ -16,17 +16,17 @@ const Menutoggler = () => {
       <ul className={`${rotate ? "show" : ""}`}>
         <li>
           <Link href="/">
-            <a onClick={() => console.log(123)}>Home</a>
+            <a onClick={() => rotateBtn(!rotate)}>Home</a>
           </Link>
         </li>
         <li>
           <Link href="/about">
-            <a>About</a>
+            <a onClick={() => rotateBtn(!rotate)}>About</a>
           </Link>
         </li>
         <li>
           <Link href="/login">
-            <a>Login</a>
+            <a onClick={() => rotateBtn(!rotate)}>Login</a>
           </Link>
         </li>
       </ul>

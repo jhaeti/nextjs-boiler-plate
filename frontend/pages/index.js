@@ -4,6 +4,7 @@ import axios from "axios";
 import Items from "../components/Items";
 
 export default class index extends Component {
+  state = { items: [] };
   static async getInitialProps() {
     const res = await axios.get("http://localhost:5000/api/items");
     const data = await res.data;
