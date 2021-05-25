@@ -1,5 +1,8 @@
+import { connect } from "react-redux";
+import Item from "./Item";
+
 const Items = ({ items }) => {
-  return items.map((item) => <h3 key={item._id}>{item.name}</h3>);
+  return items.map((item) => <Item key={item._id} item={item} />);
 };
 
-export default Items;
+export default connect((state) => state)(Items);
