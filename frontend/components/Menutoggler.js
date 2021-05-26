@@ -29,6 +29,11 @@ const Menutoggler = () => {
             <a onClick={() => rotateBtn(!rotate)}>Login</a>
           </Link>
         </li>
+        <li>
+          <Link href="/register">
+            <a onClick={() => rotateBtn(!rotate)}>Register</a>
+          </Link>
+        </li>
       </ul>
       <style jsx>{`
         .lines {

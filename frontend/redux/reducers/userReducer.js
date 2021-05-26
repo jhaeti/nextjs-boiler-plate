@@ -22,13 +22,13 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload,
+        user: action.payload.user,
         msg: null,
         showMsg: false,
+        token: action.payload.token,
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isAuthenticated: true,
@@ -39,7 +39,6 @@ const userReducer = (state = initialState, action) => {
       };
     case LOGOUT_SUCCESS:
     case LOAD_USER_FAIL:
-      localStorage.removeItem("token");
       return {
         isAuthenticated: false,
         token: null,
@@ -49,7 +48,6 @@ const userReducer = (state = initialState, action) => {
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
-      localStorage.removeItem("token");
       return {
         isAuthenticated: false,
         token: null,

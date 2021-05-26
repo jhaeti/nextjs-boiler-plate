@@ -15,9 +15,8 @@ const Login = (props) => {
     e.preventDefault();
     props.login(state);
     setState({ email: "", password: "" });
-    Router.push("/");
+    // Router.push("/");
   };
-  console.log(props.isAuthenticated);
   return (
     <div className="page">
       <div className="container">

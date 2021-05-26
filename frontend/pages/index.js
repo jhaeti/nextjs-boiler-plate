@@ -17,7 +17,7 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    this.props.loadUser(localStorage.getItem("token"));
+    this.props.loadUser();
   }
 
   render() {

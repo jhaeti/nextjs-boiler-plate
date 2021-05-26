@@ -37,7 +37,7 @@ module.exports = {
       }
     }
   },
-  setCookies: (req, res, next) => {
+  setCookies: (req, res, next, token) => {
     res.cookie(process.env.AUTH_COOKIE_NAME, token);
     next();
   },
