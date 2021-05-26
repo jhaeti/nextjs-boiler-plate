@@ -2,6 +2,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>&copy; {`${new Date().getFullYear()}`}</div>
+
       <style jsx>{`
         .footer {
           height: 50px;
@@ -10,7 +11,7 @@ const Footer = () => {
           justify-content: center;
           align-items: center;
           color: #fff;
-          margin-top: 75vh;
+          width: 100%;
         }
       `}</style>
     </div>
