@@ -17,8 +17,8 @@ const reducer = (state, action) => {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    if (state.item.items) {
-      nextState.item.items = state.item.items; // preserve count value on client side navigation
+    if (state) {
+      nextState = state;
       console.log("But nothing in there");
     }
     return nextState;
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
 };
 
 const initStore = () => {
-  return createStore(reducer, bindMiddleware([thunk]));
+  return createStore(rootReducer, bindMiddleware([thunk]));
 };
 
 export const wrapper = createWrapper(initStore);

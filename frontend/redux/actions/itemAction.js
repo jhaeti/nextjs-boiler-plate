@@ -7,12 +7,13 @@ export const DELETE_ITEM = "DELETE_ITEM";
 
 export const getItems = () => (dispatch) => {
   dispatch({ type: IS_LOADING });
-  axios.get("http://localhost:5000/api/items").then((res) => {
-    return dispatch({
+
+  axios.get("http://localhost:5000/api/items").then((res) =>
+    dispatch({
       type: GET_ITEMS,
       payload: res.data,
-    });
-  });
+    })
+  );
 };
 
 export const addItem = (name) => (dispatch) => {
