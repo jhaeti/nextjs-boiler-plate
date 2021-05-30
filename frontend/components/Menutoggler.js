@@ -29,22 +29,27 @@ const Menutoggler = () => {
             <a onClick={() => rotateBtn(!rotate)}>Login</a>
           </Link>
         </li>
+        <li>
+          <Link href="/register">
+            <a onClick={() => rotateBtn(!rotate)}>Register</a>
+          </Link>
+        </li>
       </ul>
       <style jsx>{`
         .lines {
           z-index: 1000;
           position: fixed;
-          right: 0;
-          top: 0;
-          width: 60px;
-          height: 60px;
+          right: 15px;
+          top: 20px;
           transition: 0.5s all ease-in;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
           background: #333;
-          border-radius: 50%;
+          width: 36px;
+          height: 30px;
+          border-radius: 3px;
         }
 
         .menu-rotate {
@@ -59,6 +64,9 @@ const Menutoggler = () => {
           margin-bottom: 5px;
           transition: 0.5s all ease-in;
           border-radius: 5px;
+        }
+        .line:nth-child(3) {
+          margin-bottom: 0;
         }
 
         .rotate {
@@ -89,6 +97,7 @@ const Menutoggler = () => {
           transform: translateX(250px);
           transition: 0.5s all ease-in;
           z-index: 50;
+          margin: 0;
         }
 
         ul.show {

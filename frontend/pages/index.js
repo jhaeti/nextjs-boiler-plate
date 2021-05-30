@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { Layout } from "../components/Layout";
 import axios from "axios";
 import Items from "../components/Items";
+import { getItems } from "../redux/actions/itemAction";
+import { loadUser } from "../redux/actions/userAction";
 
-export default class index extends Component {
-  state = { items: [] };
+class Index extends Component {
   static async getInitialProps() {
     const res = await axios.get("http://localhost:5000/api/items");
     const data = await res.data;
@@ -12,6 +15,11 @@ export default class index extends Component {
       items: data,
     };
   }
+
+  componentDidMount() {
+    this.props.loadUser();
+  }
+
   render() {
     const { items } = this.props;
     return (
@@ -24,12 +32,13 @@ export default class index extends Component {
         <style jsx>{`
           .container {
             width: 1366px;
-            margin: 0 auto;
+            margin: 0 auto 50px auto;
           }
           // Larger Screens
           @media only screen and (max-width: 1440px) {
             .container {
               width: 80%;
+              margin-bottom: 50px;
             }
           }
           // Mobile version
@@ -43,3 +52,12 @@ export default class index extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getItems: bindActionCreators(getItems, dispatch),
+    loadUser: bindActionCreators(loadUser, dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Index);
