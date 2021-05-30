@@ -26,10 +26,12 @@ export const login = (user) => (dispatch) => {
     });
 };
 
-export const logout = () => {
-  return {
-    type: LOGOUT_SUCCESS,
-  };
+export const logout = (name) => (dispatch) => {
+  axios
+    .get(`http://localhost:5000/api/users/logout/${name}`, {
+      withCredentials: true,
+    })
+    .then(() => dispatch({ type: LOGOUT_SUCCESS }));
 };
 
 export const loadUser = () => (dispatch, getState) => {

@@ -5,7 +5,7 @@ import { logout } from "../redux/actions/userAction";
 
 const Menutoggler = (props) => {
   const [rotate, rotateBtn] = useState(false);
-  const { isAuthenticated, logout } = props;
+  const { isAuthenticated, logout, user } = props;
   return (
     <div>
       <div
@@ -47,7 +47,7 @@ const Menutoggler = (props) => {
               <a
                 onClick={() => {
                   rotateBtn(!rotate);
-                  logout();
+                  logout(user.name);
                 }}
               >
                 Logout
@@ -147,6 +147,7 @@ const Menutoggler = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
   };
 };
 

@@ -37,7 +37,7 @@ const userReducer = (state = initialState, action) => {
         msg: null,
         showMsg: false,
       };
-    case LOGOUT_SUCCESS:
+
     case LOAD_USER_FAIL:
       return {
         isAuthenticated: false,
@@ -46,6 +46,7 @@ const userReducer = (state = initialState, action) => {
         msg: null,
         showMsg: false,
       };
+    case LOGOUT_SUCCESS:
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       return {

@@ -14,7 +14,7 @@ class Navbar extends Component {
   //   //   }
   // };
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, user } = this.props;
     return (
       <div className="navbar">
         <div className="container">
@@ -52,7 +52,7 @@ class Navbar extends Component {
                 <Link href="/login">
                   <a
                     onClick={() => {
-                      this.props.logout();
+                      this.props.logout(user.name);
                     }}
                   >
                     Logout
@@ -132,6 +132,7 @@ class Navbar extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
   };
 };
 export default connect(mapStateToProps, { logout })(Navbar);
