@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { auth } = require("./controllers/authMiddleware");
 
 const User = require("../models/user");
 
@@ -98,6 +99,15 @@ route.post("/login", (req, res) => {
       }
     });
   }
+});
+
+// Handling Logout functionality
+route.get("/logout/:name", auth, (req, res) => {
+  // Clear cookies from the browser
+  res.clearCookie(process.env.AUTH_COOKIE_NAME);
+  res.json(
+    `Hey ${req.params.name}, you have successfully logged out. Sign in to gain access to the operations in here`
+  );
 });
 
 module.exports = route;
