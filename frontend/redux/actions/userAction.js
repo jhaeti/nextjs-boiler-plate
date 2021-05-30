@@ -26,7 +26,7 @@ export const login = (user) => (dispatch) => {
     });
 };
 
-export const logOut = () => {
+export const logout = () => {
   return {
     type: LOGOUT_SUCCESS,
   };
