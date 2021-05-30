@@ -13,6 +13,7 @@ const DeleteButton = (props) => {
           border-radius: 3px;
           color: #fff;
           border: 2px solid #f00;
+          cursor: pointer;
 
           transition: all ease-in-out 0.2s;
         }
