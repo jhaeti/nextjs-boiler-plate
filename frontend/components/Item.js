@@ -3,7 +3,7 @@ import DeleteButton from "./DeleteButton";
 const Item = ({ item }) => {
   return (
     <div className="item">
-      <h3>{item.name}</h3> <DeleteButton id={item.id} />
+      <h3>{item.name}</h3> <DeleteButton id={item._id} />
       <style jsx>{`
         .item {
           width: 100%;
