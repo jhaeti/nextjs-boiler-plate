@@ -20,59 +20,47 @@ const Register = (props) => {
   return (
     <div className="page">
       <div className="container">
-        {props.isAuthenticated ? (
-          <h3>
-            You have already log in your account you have access to all
-            oprations on the website.
-          </h3>
-        ) : (
-          <>
-            <div className="left">
-              <div className="title-lg">Register</div>
-              <div className="eula">
-                By registering in you gain access to adding items and deleting
-                items of your choice
-              </div>
-            </div>
-            <div className="right">
-              <form onSubmit={handleSubmit} className="form">
-                <label htmlFor="name">Name</label>
-                <input
-                  type="name"
-                  id="name"
-                  name="name"
-                  onChange={handleChange}
-                  value={state.name}
-                />
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={state.email}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={state.password}
-                />
-                <Link href="/login">
-                  <a>Already have an account</a>
-                </Link>
-                <input type="submit" id="submit" value="Submit" />
-              </form>
-            </div>
-          </>
-        )}
+        <div className="left">
+          <div className="title-lg">Register</div>
+          <div className="eula">
+            By registering in you gain access to adding items and deleting items
+            of your choice
+          </div>
+        </div>
+        <div className="right">
+          <form onSubmit={handleSubmit} className="form">
+            <label htmlFor="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              onChange={handleChange}
+              value={state.name}
+            />
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              onChange={handleChange}
+              value={state.email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              value={state.password}
+            />
+            <Link href="/login">
+              <a>Already have an account</a>
+            </Link>
+            <input type="submit" id="submit" value="Submit" />
+          </form>
+        </div>
       </div>
       <style jsx>{`
-        h3 {
-          margin: 30px;
-        }
         .container {
           width: 640px;
           height: 100%;

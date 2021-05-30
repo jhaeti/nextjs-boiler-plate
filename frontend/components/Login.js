@@ -15,51 +15,42 @@ const Login = (props) => {
     e.preventDefault();
     props.login(state);
     setState({ email: "", password: "" });
-    // Router.push("/");
+    Router.push("/");
   };
   return (
     <div className="page">
       <div className="container">
-        {props.isAuthenticated ? (
-          <h3>
-            You have already log in your account you have access to all
-            oprations on the website.
-          </h3>
-        ) : (
-          <>
-            <div className="left">
-              <div className="title-lg">Login</div>
-              <div className="eula">
-                By logging in you agree to the ridiculously long terms that you
-                didn't bother to read
-              </div>
-            </div>
-            <div className="right">
-              <form onSubmit={handleSubmit} className="form">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  onChange={handleChange}
-                  value={state.email}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  onChange={handleChange}
-                  value={state.password}
-                />
-                <Link href="/register">
-                  <a>Create an account</a>
-                </Link>
-                <input type="submit" id="submit" value="Submit" />
-              </form>
-            </div>
-          </>
-        )}
+        <div className="left">
+          <div className="title-lg">Login</div>
+          <div className="eula">
+            By logging in you agree to the ridiculously long terms that you
+            didn't bother to read
+          </div>
+        </div>
+        <div className="right">
+          <form onSubmit={handleSubmit} className="form">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              onChange={handleChange}
+              value={state.email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              value={state.password}
+            />
+            <Link href="/register">
+              <a>Create an account</a>
+            </Link>
+            <input type="submit" id="submit" value="Submit" />
+          </form>
+        </div>
       </div>
       <style jsx>{`
         .container {

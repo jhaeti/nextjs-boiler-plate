@@ -5,4 +5,10 @@ const Items = ({ items }) => {
   return items.map((item) => <Item key={item._id} item={item} />);
 };
 
-export default connect((state) => state)(Items);
+const mapStateToProps = (state) => {
+  return {
+    items: state.item.items,
+  };
+};
+
+export default connect(mapStateToProps, null)(Items);

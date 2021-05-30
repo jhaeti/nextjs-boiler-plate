@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Menutoggler from "./Menutoggler";
 import { Component } from "react";
+import { connect } from "react-redux";
+import { logout } from "../redux/actions/userAction";
 
 class Navbar extends Component {
   // handleScroll = (e) => {
@@ -12,6 +14,7 @@ class Navbar extends Component {
   //   //   }
   // };
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <div className="navbar">
         <div className="container">
@@ -31,16 +34,32 @@ class Navbar extends Component {
                 <a>About</a>
               </Link>
             </li>
-            <li>
-              <Link href="/login">
-                <a>Login</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/register">
-                <a>Register</a>
-              </Link>
-            </li>
+            {!isAuthenticated ? (
+              <>
+                <li>
+                  <Link href="/register">
+                    <a>Register</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/login">
+                    <a>Login</a>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li>
+                <Link href="/login">
+                  <a
+                    onClick={() => {
+                      this.props.logout();
+                    }}
+                  >
+                    Logout
+                  </a>
+                </Link>
+              </li>
+            )}
           </ul>
           <div className="toggle-btn">
             <Menutoggler />
@@ -109,4 +128,10 @@ class Navbar extends Component {
     );
   }
 }
-export default Navbar;
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+export default connect(mapStateToProps, { logout })(Navbar);

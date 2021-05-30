@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Link from "next/link";
+import { connect } from "react-redux";
+import { logout } from "../redux/actions/userAction";
 
-const Menutoggler = () => {
+const Menutoggler = (props) => {
   const [rotate, rotateBtn] = useState(false);
+  const { isAuthenticated, logout } = props;
   return (
     <div>
       <div
@@ -24,16 +27,34 @@ const Menutoggler = () => {
             <a onClick={() => rotateBtn(!rotate)}>About</a>
           </Link>
         </li>
-        <li>
-          <Link href="/login">
-            <a onClick={() => rotateBtn(!rotate)}>Login</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/register">
-            <a onClick={() => rotateBtn(!rotate)}>Register</a>
-          </Link>
-        </li>
+        {!isAuthenticated ? (
+          <>
+            <li>
+              <Link href="/register">
+                <a onClick={() => rotateBtn(!rotate)}>Register</a>
+              </Link>
+            </li>
+
+            <li>
+              <Link href="/login">
+                <a onClick={() => rotateBtn(!rotate)}>Login</a>
+              </Link>
+            </li>
+          </>
+        ) : (
+          <li>
+            <Link href="/login">
+              <a
+                onClick={() => {
+                  rotateBtn(!rotate);
+                  logout();
+                }}
+              >
+                Logout
+              </a>
+            </Link>
+          </li>
+        )}
       </ul>
       <style jsx>{`
         .lines {
@@ -123,4 +144,10 @@ const Menutoggler = () => {
   );
 };
 
-export default Menutoggler;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps, { logout })(Menutoggler);
