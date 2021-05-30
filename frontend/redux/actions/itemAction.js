@@ -26,10 +26,12 @@ export const addItem = (name) => (dispatch) => {
 };
 
 export const deleteItem = (id) => (dispatch) => {
-  axios.delete(`http://localhost:5000/api/items${id}`).then(() => {
-    dispatch({
-      type: DELETE_ITEM,
-      payload: id,
+  axios
+    .delete(`http://localhost:5000/api/items/${id}`, { withCredentials: true })
+    .then(() => {
+      dispatch({
+        type: DELETE_ITEM,
+        payload: id,
+      });
     });
-  });
 };
