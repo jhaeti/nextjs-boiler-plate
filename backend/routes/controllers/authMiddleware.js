@@ -21,7 +21,9 @@ const jwt = require("jsonwebtoken");
 module.exports = {
   auth: (req, res, next) => {
     // get token from cookies
-    const token = req.cookies[process.env.AUTH_COOKIE_NAME];
+    // const token = req.cookies[process.env.AUTH_COOKIE_NAME];
+    // const { token } = req.body;
+    const token = req.header("x-auth-token");
 
     if (!token) {
       res.status(401).json("No token, Authorization denied");
@@ -37,7 +39,7 @@ module.exports = {
       }
     }
   },
-  setCookies: (req, res, next, token) => {
+  setCookies: (req, res, token, next) => {
     res.cookie(process.env.AUTH_COOKIE_NAME, token);
     next();
   },

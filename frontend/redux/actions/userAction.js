@@ -31,8 +31,9 @@ export const logOut = () => {
 };
 
 export const loadUser = () => (dispatch, getState) => {
+  const token = localStorage.getItem("token");
   axios
-    .get("http://localhost:5000/api/auth")
+    .get("http://localhost:5000/api/auth", getToken(getState))
     .then((res) => {
       dispatch({
         type: LOAD_USER_SUCCESS,
@@ -45,6 +46,18 @@ export const loadUser = () => (dispatch, getState) => {
         payload: err.response,
       });
     });
+};
+
+export const getToken = (getState) => {
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  token && (config.headers["x-auth-token"] = token);
+  return config;
 };
 
 export const register = (user) => (dispatch) => {
