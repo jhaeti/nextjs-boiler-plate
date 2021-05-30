@@ -49,21 +49,11 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-export const getToken = (getState) => {
-  const token = localStorage.getItem("token");
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-
-  token && (config.headers["x-auth-token"] = token);
-  return config;
-};
-
 export const register = (user) => (dispatch) => {
   axios
-    .post("http://localhost:5000/api/users/register", user)
+    .post("http://localhost:5000/api/users/register", user, {
+      withCredentials: true,
+    })
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
