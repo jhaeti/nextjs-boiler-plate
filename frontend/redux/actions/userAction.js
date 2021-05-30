@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "next/router";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOAD_USER_SUCCESS = "LOAD_USER_SUCCESS";
@@ -13,6 +14,7 @@ export const login = (user) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      Router.push("/");
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -31,7 +33,7 @@ export const logout = (name) => (dispatch) => {
     .get(`http://localhost:5000/api/users/logout/${name}`, {
       withCredentials: true,
     })
-    .then(() => dispatch({ type: LOGOUT_SUCCESS }));
+    .then((res) => dispatch({ type: LOGOUT_SUCCESS, payload: res.data }));
 };
 
 export const loadUser = () => (dispatch, getState) => {
@@ -57,6 +59,7 @@ export const register = (user) => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      Router.push("/");
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,

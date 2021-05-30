@@ -47,6 +47,13 @@ const userReducer = (state = initialState, action) => {
         showMsg: false,
       };
     case LOGOUT_SUCCESS:
+      return {
+        isAuthenticated: false,
+        token: null,
+        user: null,
+        msg: action.payload,
+        showMsg: true,
+      };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       return {

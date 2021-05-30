@@ -14,8 +14,6 @@ const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.register(state);
-    setState({ email: "", password: "" });
-    Router.push("/");
   };
   return (
     <div className="page">
