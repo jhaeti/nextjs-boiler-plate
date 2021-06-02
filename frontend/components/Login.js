@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { login } from "../redux/actions/userAction";
-import Router from "next/router";
 import Link from "next/link";
 
 const Login = (props) => {
@@ -14,8 +13,6 @@ const Login = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.login(state);
-    setState({ email: "", password: "" });
-    Router.push("/");
   };
   return (
     <div className="page">

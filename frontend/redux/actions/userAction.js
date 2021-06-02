@@ -7,6 +7,7 @@ export const LOAD_USER_FAIL = "LOAD_USER_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
+export const CLEAR_MSG = "CLEAR_MSG";
 
 export const login = (user) => (dispatch) => {
   axios
@@ -72,4 +73,10 @@ export const register = (user) => (dispatch) => {
         payload: err.response,
       });
     });
+};
+
+export const clearMsg = () => {
+  return {
+    type: CLEAR_MSG,
+  };
 };

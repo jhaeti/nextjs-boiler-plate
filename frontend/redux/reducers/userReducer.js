@@ -1,4 +1,7 @@
+import Router from "next/router";
+
 import {
+  CLEAR_MSG,
   LOAD_USER_FAIL,
   LOAD_USER_SUCCESS,
   LOGIN_FAIL,
@@ -29,6 +32,7 @@ const userReducer = (state = initialState, action) => {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+      Router.push;
       return {
         ...state,
         isAuthenticated: true,
@@ -62,6 +66,11 @@ const userReducer = (state = initialState, action) => {
         user: null,
         msg: action.payload.data,
         showMsg: true,
+      };
+    case CLEAR_MSG:
+      return {
+        ...state,
+        msg: null,
       };
     default:
       return state;
