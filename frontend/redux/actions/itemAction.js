@@ -17,12 +17,18 @@ export const getItems = () => (dispatch) => {
 };
 
 export const addItem = (name) => (dispatch) => {
-  axios.post("http://localhost:5000/api/items", { name }).then((res) => {
-    dispatch({
-      type: ADD_ITEM,
-      payload: res.data,
+  axios
+    .post(
+      "http://localhost:5000/api/items",
+      { name },
+      { withCredentials: true }
+    )
+    .then((res) => {
+      dispatch({
+        type: ADD_ITEM,
+        payload: res.data,
+      });
     });
-  });
 };
 
 export const deleteItem = (id) => (dispatch) => {

@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Layout } from "../components/Layout";
-import axios from "axios";
+
 import Items from "../components/Items";
 import { getItems } from "../redux/actions/itemAction";
 import { loadUser } from "../redux/actions/userAction";
+import AddItem from "../components/AddItem";
 
 class Index extends Component {
   componentDidMount() {
@@ -16,6 +17,8 @@ class Index extends Component {
   render() {
     return (
       <Layout>
+        {" "}
+        <AddItem />
         <div className="container">
           <Items />
         </div>
