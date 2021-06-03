@@ -8,6 +8,7 @@ const route = express.Router();
 // Gets all Items and spit in json all the items
 route.get("/", (req, res) => {
   Item.find()
+    .sort({ sort: -1 })
     .then((items) => res.json(items))
     .catch((err) => console.log(err));
 });
@@ -26,7 +27,7 @@ route.post("/", auth, (req, res) => {
 route.delete("/:id", auth, (req, res) => {
   const { id } = req.params;
   Item.findById({ _id: id })
-    .sort({ sort: -1 })
+
     .then((item) => {
       item.remove().then(() => res.json({ success: true }));
     })
