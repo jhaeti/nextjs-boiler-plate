@@ -12,13 +12,16 @@ const AddItem = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.addItem(item);
+    setitem("");
   };
 
+  const { isAuthenticated } = props;
   return (
     <div className="bg">
       <div className="container">
         <form onSubmit={handleSubmit}>
           <input
+            disabled={!isAuthenticated}
             className="name-input"
             onChange={handleChange}
             type="text"
@@ -34,6 +37,7 @@ const AddItem = (props) => {
           background: #444;
         }
         .container {
+          justify-content: flex-end;
           padding-top: 1.2rem;
           padding-bottom: 1.2rem;
         }
@@ -65,4 +69,10 @@ const AddItem = (props) => {
   );
 };
 
-export default connect(null, { addItem })(AddItem);
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+export default connect(mapStateToProps, { addItem })(AddItem);

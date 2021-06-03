@@ -3,7 +3,7 @@ import { clearMsg } from "../redux/actions/userAction";
 
 const Alert = (props) => {
   const { msg, clearMsg } = props;
-  console.log(msg);
+
   return (
     msg && (
       <div className="container">
