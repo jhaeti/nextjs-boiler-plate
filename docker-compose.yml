@@ -1,0 +1,49 @@
+version: "3.4"
+
+volumes:
+  mongo_data:
+    name: mongo_data
+
+services:
+  database:
+    container_name: database
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongo_data:/data/db"
+    restart: always
+
+  api:
+    container_name: api
+    build: backend/
+    ports:
+      - "5000:5000"
+    volumes:
+      # Share the entire project except "node_modules". This prevents us from having to COPY the project files
+      #   in the Dockerfile, while still keeping separate node dependency files.
+      - "./backend:/backend"
+      - "/backend/node_modules"
+    environment:
+      [
+        MONGO_DEV_URI=mongodb://127.0.0.1:27017/Boilerplate,
+        JWT_SECRET_KEY=next-boiler-plate-secret-keys-for-dev,
+        AUTH_COOKIE_NAME=x-auth-tokensss,
+        DOCKER_MONGO_URI=mongodb://localhost:27017,
+      ]
+    restart: always
+    links:
+      - database
+
+  client:
+    container_name: client
+    build: frontend/
+    ports:
+      - "3000:3000"
+    volumes:
+      # Share the entire project except "node_modules". This prevents us from having to COPY the project files
+      #   in the Dockerfile, while still keeping separate node dependency files.
+      - "./frontend:/frontend"
+      - "/frontend/node_modules"
+    links:
+      - api
