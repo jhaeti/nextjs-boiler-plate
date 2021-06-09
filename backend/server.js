@@ -19,7 +19,7 @@ app.use("/api/auth", require("./routes/authRoute"));
 // Getting mongo uri from the keys folder
 const url =
   process.env.NODE_ENV === "production"
-    ? process.env.MONGO_URI
+    ? process.env.DOCKER_MONGO_URI
     : process.env.MONGO_DEV_URI;
 console.log(url);
 // Connect to mongodb using mongoose
