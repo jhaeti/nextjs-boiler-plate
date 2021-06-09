@@ -3,7 +3,7 @@ import Login from "../components/Login";
 
 const login = () => {
   return (
-    <Layout>
+    <Layout title="Login" description="Page for users to login">
       <Login />
     </Layout>
   );

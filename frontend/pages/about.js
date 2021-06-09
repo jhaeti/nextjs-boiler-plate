@@ -2,7 +2,7 @@ import { Layout } from "../components/Layout";
 
 const about = () => {
   return (
-    <Layout>
+    <Layout title="About the Boilerplate" description="About the boilerplate">
       <div>About</div>
     </Layout>
   );

@@ -8,19 +8,18 @@ const DeleteButton = (props) => {
       Delete Item
       <style jsx>{`
         div {
-          background: red;
+          background: hsl(0, 100%, 30%);
           padding: 0.7rem 1.2rem;
           border-radius: 3px;
           color: #fff;
-          border: 2px solid #f00;
+          border: 2px solid hsl(0, 100%, 30%);
           cursor: pointer;
 
           transition: all ease-in-out 0.2s;
         }
         div:hover {
-          background: rgba(255, 0, 0, 0.1);
-          color: red;
-          border: 2px solid red;
+          background: hsla(0, 100%, 30%, 0.1);
+          color: hsl(0, 100%, 30%);
         }
       `}</style>
     </div>
