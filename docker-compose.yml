@@ -30,13 +30,8 @@ services:
     volumes:
       - "./backend:/backend"
       - "/backend/node_modules"
-    environment:
-      [
-        MONGO_DEV_URI=mongodb://mongo:27017/Boilerplate,
-        JWT_SECRET_KEY=next-boiler-plate-secret-keys-for-dev,
-        AUTH_COOKIE_NAME=x-auth-token,
-        DOCKER_MONGO_URI=mongodb://localhost:27017,
-      ]
+    env_file:
+      - ./backend/.env
     restart: always
     depends_on:
       - mongo

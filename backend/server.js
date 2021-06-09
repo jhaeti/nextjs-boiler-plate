@@ -21,7 +21,7 @@ const url =
   process.env.NODE_ENV === "production"
     ? process.env.MONGO_URI
     : process.env.MONGO_DEV_URI;
-
+console.log(url);
 // Connect to mongodb using mongoose
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);

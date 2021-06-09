@@ -1,0 +1,25 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "Boiler plate website",
+  "main": "\"\"",
+  "scripts": {
+    "start": "node server.js",
+    "server": "cd backend && npm run server",
+    "client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhaeti/nextjs-boiler-plate.git"
+  },
+  "author": "Ti Jhae",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhaeti/nextjs-boiler-plate/issues"
+  },
+  "homepage": "https://github.com/jhaeti/nextjs-boiler-plate#readme",
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}
