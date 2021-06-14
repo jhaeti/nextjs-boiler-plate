@@ -26,43 +26,46 @@ const AddItem = (props) => {
             onChange={handleChange}
             type="text"
             name="item"
-            placeholder="Input Item name"
+            placeholder="Item name"
             value={item}
           />
-          <button className="submit">Add Item</button>
+          <button className="submit">ADD</button>
         </form>
       </div>
       <style jsx>{`
-        .bg {
-          background: #444;
-        }
         .container {
           justify-content: flex-end;
-          padding-top: 1.2rem;
-          padding-bottom: 1.2rem;
+          padding: 0 1.2rem;
         }
         form {
           display: flex;
         }
         form > * {
-          margin: 5px;
+          margin-top: 10px;
+          border-radius: 3px;
+          padding: 0.8rem 1.5rem;
+          height: 3rem;
         }
         .name-input {
-          padding: 1.5rem;
-          color: gba(200, 200, 200, 1);
-          background: rgba(200, 200, 200, 0.1);
-          border: 2px solid rgba(200, 200, 200, 1);
-          border-radius: 3px;
+          color: #000;
+          background: hsl(0, 0%, 85%);
           flex: 3.5;
         }
 
         .submit {
+          margin: 10px;
           flex: 1.5;
+          color: #fff;
+          background: hsl(0, 0%, 30%);
+          border: 2px solid transparent;
           font-size: 1rem;
-          color: #333;
-          background: #3af;
-          border: #3af;
-          border-radius: 3px;
+          transition: all ease-in 0.2s;
+        }
+
+        .submit:hover {
+          border: 2px solid hsl(0, 0%, 20%);
+          background: hsla(0, 0%, 20%, 0.3);
+          color: hsl(0, 0%, 20%);
         }
       `}</style>
     </div>
