@@ -96,7 +96,7 @@ route.post("/login", (req, res) => {
 
 // Handling Logout functionality
 route.get("/logout", auth, (req, res) => {
-  // Clear cookies from the browser
+  // Clear cookies from the browser and Server
   res.clearCookie(process.env.AUTH_COOKIE_NAME);
   res.sendStatus(200);
 });
