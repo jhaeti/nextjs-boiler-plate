@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { login } from "../redux/actions/userAction";
 import Link from "next/link";
 
-const Login = (props) => {
+const Login = ({ login }) => {
   const [state, setState] = useState({ email: "", password: "" });
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -12,7 +12,7 @@ const Login = (props) => {
   // Attempting to Login
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.login(state);
+    login(state);
   };
   return (
     <div className="page">
@@ -55,6 +55,9 @@ const Login = (props) => {
           height: 100%;
           align-items: center;
         }
+        input[type="submit"] {
+          cursor: pointer;
+        }
         input[type="email"],
         input[type="password"] {
           border-bottom: 1px solid #ddd;
@@ -93,9 +96,4 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-  };
-};
-export default connect(mapStateToProps, { login })(Login);
+export default connect(null, { login })(Login);

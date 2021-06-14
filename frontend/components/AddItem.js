@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { addItem } from "../redux/actions/itemAction";
 
-const AddItem = (props) => {
+const AddItem = ({ isAuthenticated, addItem }) => {
   const [item, setitem] = useState("");
 
   const handleChange = (e) => {
@@ -11,11 +11,10 @@ const AddItem = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.addItem(item);
+    addItem(item);
     setitem("");
   };
 
-  const { isAuthenticated } = props;
   return (
     <div className="bg">
       <div className="container">
@@ -60,6 +59,7 @@ const AddItem = (props) => {
           border: 2px solid transparent;
           font-size: 1rem;
           transition: all ease-in 0.2s;
+          cursor: pointer;
         }
 
         .submit:hover {

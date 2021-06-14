@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { deleteItem } from "../redux/actions/itemAction";
 
-const DeleteButton = (props) => {
-  const { deleteItem, id } = props;
+const DeleteButton = ({ deleteItem, id }) => {
   return (
     <div onClick={() => deleteItem(id)}>
       Delete Item

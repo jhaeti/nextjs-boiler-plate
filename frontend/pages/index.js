@@ -11,6 +11,7 @@ import AddItem from "../components/AddItem";
 class Index extends Component {
   componentDidMount() {
     this.props.getItems();
+    // Try to load the user when the component mounts
     this.props.loadUser();
   }
 

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { register } from "../redux/actions/userAction";
-import Router from "next/router";
 import Link from "next/link";
 
-const Register = (props) => {
+const Register = ({ register }) => {
   const [state, setState] = useState({ name: "", email: "", password: "" });
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -13,7 +12,7 @@ const Register = (props) => {
   //   Attempting to Register a User
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.register(state);
+    register(state);
   };
   return (
     <div className="page">
@@ -102,10 +101,4 @@ const Register = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-  };
-};
-
-export default connect(mapStateToProps, { register })(Register);
+export default connect(null, { register })(Register);

@@ -1,7 +1,6 @@
-import Router from "next/router";
-
 import {
   CLEAR_MSG,
+  SET_MSG,
   LOAD_USER_FAIL,
   LOAD_USER_SUCCESS,
   LOGIN_FAIL,
@@ -16,7 +15,6 @@ const initialState = {
   token: null,
   user: null,
   msg: null,
-  showMsg: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -27,19 +25,16 @@ const userReducer = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload.user,
         msg: null,
-        showMsg: false,
         token: action.payload.token,
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      Router.push;
       return {
         ...state,
         isAuthenticated: true,
         token: action.payload.token,
         user: action.payload.user,
         msg: null,
-        showMsg: false,
       };
 
     case LOAD_USER_FAIL:
@@ -49,7 +44,6 @@ const userReducer = (state = initialState, action) => {
         token: null,
         user: null,
         msg: null,
-        showMsg: false,
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
@@ -58,7 +52,11 @@ const userReducer = (state = initialState, action) => {
         token: null,
         user: null,
         msg: action.payload.data,
-        showMsg: true,
+      };
+    case SET_MSG:
+      return {
+        ...state,
+        msg: action.payload,
       };
     case CLEAR_MSG:
       return {

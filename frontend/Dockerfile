@@ -15,6 +15,7 @@ COPY --from=base /base ./
 RUN npm run build
 
 
+
 FROM base AS production
 ENV NODE_ENV=production
 
@@ -22,6 +23,7 @@ WORKDIR /app
 COPY --from=build /build/package*.json ./
 COPY --from=build /build/.next ./.next
 COPY --from=build /build/public ./public
+
 RUN npm install next
 
 EXPOSE 3000

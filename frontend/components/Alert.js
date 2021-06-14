@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
 import { clearMsg } from "../redux/actions/userAction";
 
-const Alert = (props) => {
-  const { msg, clearMsg } = props;
-
+const Alert = ({ msg, clearMsg }) => {
   return (
     msg && (
       <div className="container">
         <div className="msg">
           {msg}
+
           <div
             onClick={() => {
               clearMsg();
@@ -18,7 +17,8 @@ const Alert = (props) => {
             x
           </div>
         </div>
-        {setTimeout(() => clearMsg(), 3000)}
+
+        <div className="bug">{setTimeout(() => clearMsg(), 3000)}</div>
         <style jsx>{`
           .container {
             justify-content: flex-end;
@@ -39,6 +39,9 @@ const Alert = (props) => {
             color: #f00;
             opacity: 0.7;
             cursor: pointer;
+          }
+          .bug {
+            display: none;
           }
         `}</style>
       </div>

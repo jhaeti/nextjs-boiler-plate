@@ -3,9 +3,8 @@ import Link from "next/link";
 import { connect } from "react-redux";
 import { logout } from "../redux/actions/userAction";
 
-const Menutoggler = (props) => {
+const Menutoggler = ({ isAuthenticated, logout }) => {
   const [rotate, rotateBtn] = useState(false);
-  const { isAuthenticated, logout } = props;
   return (
     <div>
       <div
