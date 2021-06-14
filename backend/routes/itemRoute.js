@@ -27,7 +27,6 @@ route.post("/", auth, (req, res) => {
 route.delete("/:id", auth, (req, res) => {
   const { id } = req.params;
   Item.findById({ _id: id })
-
     .then((item) => {
       item.remove().then(() => res.json({ success: true }));
     })

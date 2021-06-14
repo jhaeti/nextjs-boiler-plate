@@ -5,14 +5,13 @@ const { auth } = require("./controllers/authMiddleware");
 
 const User = require("../models/user");
 
-// const { setCookies } = require("./controllers/authMiddleware");
-
 const route = express.Router();
 
 // Register Route
 route.post("/register", (req, res) => {
   const { name, email, password } = req.body;
 
+  // Basic validation
   if (!name || !email || !password) {
     res.status(400).json("Please enter all fields");
   } else {
@@ -30,7 +29,7 @@ route.post("/register", (req, res) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
             newUser.password = hash;
-            // Save user into DataBase
+            // Saving user with hash password into DataBase
             newUser.save().then((user) => {
               jwt.sign(
                 { id: user.id },
@@ -40,11 +39,11 @@ route.post("/register", (req, res) => {
                   if (err) throw err;
 
                   // Saving token in coookies before sending data
-                  res.cookie(process.env.AUTH_COOKIE_NAME, token, {
-                    maxAge: 1000 * 60 * 60 * 24,
-                    httpOnly: true,
-                  });
-                  res.json({ token, user: { name, email, id } });
+                  res
+                    .cookie(process.env.AUTH_COOKIE_NAME, token, {
+                      httpOnly: true,
+                    })
+                    .json({ token, user: { name, email, id } });
                 }
               );
             });
@@ -59,6 +58,7 @@ route.post("/register", (req, res) => {
 route.post("/login", (req, res) => {
   const { email, password } = req.body;
 
+  // Basic validation
   if (!email || !password) {
     res.status(400).json("Please enter all fields");
   } else {
@@ -78,18 +78,11 @@ route.post("/login", (req, res) => {
                 if (err) throw err;
 
                 // Saving token in coookies before sending data
-                // res.cookie(process.env.AUTH_COOKIE_NAME, token, {
-                //   maxAge: 1000 * 60 * 60 * 24,
-                //   httpOnly: true,
-                //   sameSite: "none",
-                //   secure: true,
-                // });
-                // Saving token in coookies before sending data
-                res.cookie(process.env.AUTH_COOKIE_NAME, token, {
-                  maxAge: 1000 * 60 * 60 * 24,
-                  httpOnly: true,
-                });
-                res.json({ token, user: { name, email, id } });
+                res
+                  .cookie(process.env.AUTH_COOKIE_NAME, token, {
+                    httpOnly: true,
+                  })
+                  .json({ token, user: { name, email, id } });
               }
             );
           } else {
@@ -102,12 +95,10 @@ route.post("/login", (req, res) => {
 });
 
 // Handling Logout functionality
-route.get("/logout/:name", auth, (req, res) => {
+route.get("/logout", auth, (req, res) => {
   // Clear cookies from the browser
   res.clearCookie(process.env.AUTH_COOKIE_NAME);
-  res.json(
-    `Hey ${req.params.name}, you have successfully logged out. Sign in to gain access to the operations in here`
-  );
+  res.sendStatus(200);
 });
 
 module.exports = route;
