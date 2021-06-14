@@ -19,11 +19,10 @@ const jwt = require("jsonwebtoken");
 // };
 
 module.exports = {
+  // Middleware for Authorizing old users
   auth: (req, res, next) => {
     // get token from cookies
     const token = req.cookies[process.env.AUTH_COOKIE_NAME];
-    // const { token } = req.body;
-    // const token = req.header("x-auth-token");
 
     if (!token) {
       res.status(401).json("No token, Authorization denied");
@@ -38,9 +37,5 @@ module.exports = {
         res.status(400).json("Token is not valid");
       }
     }
-  },
-  setCookies: (req, res, token, next) => {
-    res.cookie(process.env.AUTH_COOKIE_NAME, token);
-    next();
   },
 };

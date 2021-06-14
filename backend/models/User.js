@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Creating User Model
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -15,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    deafault: Date.now,
+    default: Date.now,
   },
 });
 

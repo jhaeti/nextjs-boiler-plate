@@ -46,6 +46,7 @@ services:
     volumes:
       - "./frontend:/frontend"
       - "/frontend/node_modules"
+      - "/frontend/.next"
     restart: always
     depends_on:
       - backend
