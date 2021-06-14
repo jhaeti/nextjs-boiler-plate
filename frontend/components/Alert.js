@@ -18,16 +18,17 @@ const Alert = (props) => {
             x
           </div>
         </div>
+        {setTimeout(() => clearMsg(), 3000)}
         <style jsx>{`
           .container {
             justify-content: flex-end;
           }
           .msg {
-            background: rgba(0, 255, 0, 0.4);
+            background: hsl(131, 60%, 81%);
             padding: 1rem 0rem 1rem 1.5rem;
 
             margin-top: 1rem;
-            color: green;
+            color: hsl(131, 50%, 21%);
             position: absolute;
             z-index: 2;
             cursor: pointer;
