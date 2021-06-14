@@ -43,20 +43,13 @@ const userReducer = (state = initialState, action) => {
       };
 
     case LOAD_USER_FAIL:
+    case LOGOUT_SUCCESS:
       return {
         isAuthenticated: false,
         token: null,
         user: null,
         msg: null,
         showMsg: false,
-      };
-    case LOGOUT_SUCCESS:
-      return {
-        isAuthenticated: false,
-        token: null,
-        user: null,
-        msg: action.payload,
-        showMsg: true,
       };
     case LOGIN_FAIL:
     case REGISTER_FAIL:

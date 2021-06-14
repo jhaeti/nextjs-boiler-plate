@@ -5,16 +5,8 @@ import { connect } from "react-redux";
 import { logout } from "../redux/actions/userAction";
 
 class Navbar extends Component {
-  // handleScroll = (e) => {
-  //   console.log(123);
-  //   //   let element = e.target;
-  //   //   if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-  //   //     // do something at end of scroll
-  //   //     console.log("Scrolling");
-  //   //   }
-  // };
   render() {
-    const { isAuthenticated, user } = this.props;
+    const { isAuthenticated } = this.props;
     return (
       <div className="navbar">
         <div className="container">
@@ -52,7 +44,7 @@ class Navbar extends Component {
                 <Link href="/login">
                   <a
                     onClick={() => {
-                      this.props.logout(user.name);
+                      this.props.logout();
                     }}
                   >
                     Logout
@@ -132,7 +124,6 @@ class Navbar extends Component {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
   };
 };
 export default connect(mapStateToProps, { logout })(Navbar);
