@@ -31,7 +31,7 @@ export const login = (user) => (dispatch) => {
 
 export const logout = () => (dispatch) => {
   axios
-    .get(`http://localhost:5000/api/users/logout}`, {
+    .get("http://localhost:5000/api/users/logout", {
       withCredentials: true,
     })
     .then((res) => dispatch({ type: LOGOUT_SUCCESS }));

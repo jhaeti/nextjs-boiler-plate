@@ -6,7 +6,7 @@ import { logout } from "../redux/actions/userAction";
 
 class Navbar extends Component {
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, logout } = this.props;
     return (
       <div className="navbar">
         <div className="container">
@@ -44,7 +44,7 @@ class Navbar extends Component {
                 <Link href="/login">
                   <a
                     onClick={() => {
-                      this.props.logout();
+                      logout();
                     }}
                   >
                     Logout
