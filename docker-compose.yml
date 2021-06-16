@@ -20,11 +20,43 @@ services:
       - boilerplate
     restart: always
 
-  backend:
-    container_name: backend
+  backend1:
+    container_name: backend1
     build: ./backend
     ports:
-      - "5000:5000"
+      - "5001:5000"
+    networks:
+      - boilerplate
+    volumes:
+      - "./backend:/backend"
+      - "/backend/node_modules"
+    env_file:
+      - ./backend/.env
+    restart: always
+    depends_on:
+      - mongo
+
+  backend2:
+    container_name: backend2
+    build: ./backend
+    ports:
+      - "5002:5000"
+    networks:
+      - boilerplate
+    volumes:
+      - "./backend:/backend"
+      - "/backend/node_modules"
+    env_file:
+      - ./backend/.env
+    restart: always
+    depends_on:
+      - mongo
+
+  backend3:
+    container_name: backend3
+    build: ./backend
+    ports:
+      - "5003:5000"
     networks:
       - boilerplate
     volumes:
@@ -49,4 +81,6 @@ services:
       - "/frontend/.next"
     restart: always
     depends_on:
-      - backend
+      - backend1
+      - backend2
+      - backend3
