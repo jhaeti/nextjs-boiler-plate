@@ -1,0 +1,29 @@
+.btn {
+    &,
+    &:visited,
+    &:link {
+        border: none;
+        border-radius: 0.3rem;
+        outline: none;
+        text-decoration: none;
+        font-size: $default-font-size;
+        padding: 0.7rem 1.2rem;
+        transition: all ease-in-out 0.2s;
+    }
+
+    &--danger {
+        background: $color-danger-3;
+
+        color: $color-light-1;
+        border: 0.2rem solid $color-danger-3;
+        cursor: pointer;
+
+        @include respond(phone) {
+            border-width: 0.3rem;
+        }
+        &:hover {
+            background: hsla(0, 100%, 30%, 0.1);
+            color: hsl(0, 100%, 30%);
+        }
+    }
+}

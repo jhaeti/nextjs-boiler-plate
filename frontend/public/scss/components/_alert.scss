@@ -1,0 +1,20 @@
+.alert {
+    font-size: $default-font-size;
+
+    &__msg {
+        background: $color-primary-1;
+        padding: 1rem 0rem 1rem 1.5rem;
+        border-radius: 0.3rem;
+        margin-top: 1rem;
+        color: $color-primary-2;
+        position: absolute;
+        z-index: 1000;
+    }
+    &__close-btn {
+        display: inline;
+        padding: 0 1.5rem;
+        color: $color-danger-1;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}

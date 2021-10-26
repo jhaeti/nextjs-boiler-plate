@@ -1,0 +1,31 @@
+@font-face {
+    font-family: JosefinSans;
+    src: url("../../Josefin_Sans/static/JosefinSans-Regular.ttf");
+    font-style: normal;
+    font-weight: 400;
+}
+
+body {
+    font-family: JosefinSans;
+}
+
+.heading-primary {
+    font-size: 6rem;
+    &--bold {
+        font-weight: 900;
+    }
+}
+
+.paragraph {
+    font-size: $default-font-size;
+    color: lighten($color-dark-1, 40%);
+
+    &--sm {
+        font-size: 1.4rem;
+    }
+}
+
+button,
+input {
+    font-family: inherit;
+}

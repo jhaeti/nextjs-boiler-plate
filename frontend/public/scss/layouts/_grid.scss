@@ -1,0 +1,40 @@
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 136.6rem;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+
+    &--center {
+        justify-content: center;
+    }
+    &--end {
+        justify-content: flex-end;
+    }
+    &--space-between {
+        justify-content: space-between;
+    }
+    &--v-center {
+        align-items: center;
+    }
+}
+.col-fill-between {
+    min-height: calc(100vh - 12rem);
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    &--center {
+        justify-content: center;
+    }
+    &--end {
+        justify-content: flex-end;
+    }
+    &--space-between {
+        justify-content: space-between;
+    }
+}

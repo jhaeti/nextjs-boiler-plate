@@ -1,0 +1,47 @@
+.add-item {
+    &__form {
+        padding: 1rem 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__input {
+        padding: 1rem 2rem;
+        border: none;
+        background-color: lighten($color-dark-1, 75%);
+        border-radius: 3px;
+        font-size: 1.7rem;
+        font-family: inherit;
+        color: lighten($color-dark-1, $amount: 10%);
+
+        &:disabled {
+            border: red;
+        }
+
+        &::-webkit-input-placeholder {
+            color: lighten($color-dark-1, $amount: 40%);
+        }
+    }
+
+    &__submit-button {
+        width: 3.6rem;
+        height: 3.6rem;
+        border-radius: 50%;
+        border: none;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            // transform: scale(1.08) translateY(-1px);
+            background-color: lighten($color-dark-1, 60%);
+        }
+    }
+
+    &__icon {
+        opacity: 0.6;
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+}

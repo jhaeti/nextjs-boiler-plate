@@ -1,0 +1,30 @@
+//	MEDIA QUERY MANAGER
+@mixin respond($breakpoint) {
+    // Media query for Phones
+    @if $breakpoint == phone {
+        @media (max-width: 600px) {
+            @content;
+        }
+    }
+
+    // Media query for Tablet in Portrait mode
+    @if $breakpoint == tab-port {
+        @media (max-width: 900px) {
+            @content;
+        }
+    }
+
+    // Media query for Tablet in Landscape mode
+    @if $breakpoint == tab-land {
+        @media (max-width: 1200px) {
+            @content;
+        }
+    }
+
+    // Media query for Big Desktop Screens
+    @if $breakpoint == big-desk {
+        @media (min-width: 1800px) {
+            @content;
+        }
+    }
+}

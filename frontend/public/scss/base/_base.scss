@@ -1,0 +1,37 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; // Making 1rem = 10px
+
+    @include respond(tab-land) {
+        font-size: 56.25%; //Making 1rem = 9px
+    }
+    @include respond(tab-port) {
+        font-size: 50%; //Making 1rem = 8px
+    }
+    @include respond(big-desk) {
+        font-size: 75%; // Making 1rem = 12px
+    }
+}
+
+body {
+    box-sizing: border-box;
+    background: $color-light-1;
+}
+
+::selection {
+    background: $color-dark-1;
+}
+
+::-webkit-selection {
+    background: $color-dark-1;
+}
+::-moz-selection {
+    background: $color-dark-1;
+}

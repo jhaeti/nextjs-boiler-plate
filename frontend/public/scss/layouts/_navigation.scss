@@ -1,0 +1,43 @@
+.nav {
+    padding: 2rem 0;
+    width: 100%;
+    background: $color-dark-1;
+    color: $color-light-1;
+    display: flex;
+    align-items: center;
+    height: 7rem;
+
+    &__branding {
+        .nav__logo {
+            color: $color-light-1;
+            text-decoration: none;
+            font-size: $default-font-size;
+            text-transform: uppercase;
+        }
+    }
+
+    &__box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__list {
+        display: flex;
+        list-style: none;
+        .nav__item {
+            padding: 1rem;
+
+            .nav__link:link,
+            .nav__link:visited {
+                color: $color-light-1;
+                text-decoration: none;
+                font-size: 1.6rem;
+
+                &.active {
+                    color: $color-primary-1;
+                }
+            }
+        }
+    }
+}
