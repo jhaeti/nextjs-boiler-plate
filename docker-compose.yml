@@ -1,86 +1,45 @@
 version: "3.9"
 
+# Volulme for storing mongo data and making it persistent
 volumes:
-  mongo_data:
-    driver: local
-
-networks:
-  boilerplate:
-    driver: bridge
+    mongo_data:
+        driver: local
 
 services:
-  mongo:
-    container_name: mongo
-    image: mongo:4.2
-    ports:
-      - "27017:27017"
-    volumes:
-      - "mongo_data:/data/db"
-    networks:
-      - boilerplate
-    restart: always
-
-  backend1:
-    container_name: backend1
-    build: ./backend
-    ports:
-      - "5001:5000"
-    networks:
-      - boilerplate
-    volumes:
-      - "./backend:/backend"
-      - "/backend/node_modules"
-    env_file:
-      - ./backend/.env
-    restart: always
-    depends_on:
-      - mongo
-
-  backend2:
-    container_name: backend2
-    build: ./backend
-    ports:
-      - "5002:5000"
-    networks:
-      - boilerplate
-    volumes:
-      - "./backend:/backend"
-      - "/backend/node_modules"
-    env_file:
-      - ./backend/.env
-    restart: always
-    depends_on:
-      - mongo
-
-  backend3:
-    container_name: backend3
-    build: ./backend
-    ports:
-      - "5003:5000"
-    networks:
-      - boilerplate
-    volumes:
-      - "./backend:/backend"
-      - "/backend/node_modules"
-    env_file:
-      - ./backend/.env
-    restart: always
-    depends_on:
-      - mongo
-
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    networks:
-      - boilerplate
-    volumes:
-      - "./frontend:/frontend"
-      - "/frontend/node_modules"
-      - "/frontend/.next"
-    restart: always
-    depends_on:
-      - backend1
-      - backend2
-      - backend3
+    mongo:
+        # container_name: mongo
+        image: mvertes/alpine-mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - "mongo_data:/data/db"
+    frontend:
+        # container_name: frontend
+        build: /frontend
+        image: frontend:v1
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+    backend:
+        # container_name: backend
+        build: /backend
+        image: backend:v1
+        deploy:
+            replicas: 4
+            update_config:
+                parallelism: 5
+                delay: 10s
+            restart_policy:
+                condition: on-failure
+                max_attempts: 3
+                window: 120s
+        ports:
+            - "5000:5000"
+    server:
+        # container_name: server
+        image: nginx:1.21.0-alpine
+        ports:
+            - "80:80"
+        volumes:
+            - "./nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
