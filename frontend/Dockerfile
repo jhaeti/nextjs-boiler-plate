@@ -1,4 +1,4 @@
-FROM node:15-alpine3.11 as base
+FROM node:16.3.0-alpine3.11 as base
 
 RUN mkdir /base
 WORKDIR /base

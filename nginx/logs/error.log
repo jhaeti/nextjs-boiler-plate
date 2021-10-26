@@ -1,9 +1,0 @@
-2021/06/14 18:09:24 [emerg] 11368#10492: "http" directive is duplicate in D:\pens\nodeExpress\nginx/conf/nginx.conf:27
-2021/06/14 18:10:08 [notice] 17148#18360: signal process started
-2021/06/14 18:10:16 [error] 1684#16432: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: , request: "GET / HTTP/1.1", upstream: "http://[::1]:5000/api/items", host: "localhost:8080"
-2021/06/14 18:10:18 [error] 1684#16432: *2 connect() failed (10061: No connection could be made because the target machine actively refused it) while connecting to upstream, client: 127.0.0.1, server: , request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:5000/api/items", host: "localhost:8080"
-2021/06/14 18:17:08 [notice] 6252#11836: signal process started
-2021/06/14 19:48:28 [emerg] 16200#16876: no "ssl_certificate" is defined for the "listen ... ssl" directive in D:\pens\boilerPlate\nginx/conf/nginx.conf:16
-2021/06/16 09:06:25 [notice] 11436#14164: signal process started
-2021/06/16 09:06:25 [error] 11436#14164: OpenEvent("Global\ngx_reload_6676") failed (2: The system cannot find the file specified)
-2021/06/16 09:09:10 [notice] 9876#5188: signal process started
