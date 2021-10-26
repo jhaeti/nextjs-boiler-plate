@@ -3,79 +3,48 @@ import { connect } from "react-redux";
 import { addItem } from "../redux/actions/itemAction";
 
 const AddItem = ({ isAuthenticated, addItem }) => {
-  const [item, setitem] = useState("");
+    const [item, setItem] = useState("");
 
-  const handleChange = (e) => {
-    setitem(e.target.value);
-  };
+    const handleChange = (e) => {
+        setItem(e.target.value);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addItem(item);
-    setitem("");
-  };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addItem(item);
+        setItem("");
+    };
 
-  return (
-    <div className="bg">
-      <div className="container">
-        <form onSubmit={handleSubmit}>
-          <input
-            disabled={!isAuthenticated}
-            className="name-input"
-            onChange={handleChange}
-            type="text"
-            name="item"
-            placeholder="Item name"
-            value={item}
-          />
-          <button className="submit">ADD</button>
-        </form>
-      </div>
-      <style jsx>{`
-        .container {
-          justify-content: flex-end;
-          padding: 0 1.2rem;
-        }
-        form {
-          display: flex;
-        }
-        form > * {
-          margin-top: 10px;
-          border-radius: 3px;
-          padding: 0.8rem 1.5rem;
-          height: 3rem;
-        }
-        .name-input {
-          color: #000;
-          background: hsl(0, 0%, 85%);
-          flex: 3.5;
-        }
-
-        .submit {
-          margin: 10px;
-          flex: 1.5;
-          color: #fff;
-          background: hsl(0, 0%, 30%);
-          border: 2px solid transparent;
-          font-size: 1rem;
-          transition: all ease-in 0.2s;
-          cursor: pointer;
-        }
-
-        .submit:hover {
-          border: 2px solid hsl(0, 0%, 20%);
-          background: hsla(0, 0%, 20%, 0.3);
-          color: hsl(0, 0%, 20%);
-        }
-      `}</style>
-    </div>
-  );
+    return (
+        <div className="add-item">
+            <div className="container">
+                <form className="add-item__form" onSubmit={handleSubmit}>
+                    <input
+                        disabled={!isAuthenticated}
+                        className="add-item__input"
+                        onChange={handleChange}
+                        type="text"
+                        name="item"
+                        placeholder="Item name"
+                        value={item}
+                    />
+                    <button className="add-item__submit-button">
+                        <img
+                            src="/icons/plus.svg"
+                            alt="Add item Icon"
+                            className="add-item__icon"
+                        />
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
 };
 
 const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.auth.isAuthenticated,
-  };
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    };
 };
 
 export default connect(mapStateToProps, { addItem })(AddItem);
