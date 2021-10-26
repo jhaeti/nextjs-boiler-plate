@@ -2,27 +2,11 @@ import { connect } from "react-redux";
 import { deleteItem } from "../redux/actions/itemAction";
 
 const DeleteButton = ({ deleteItem, id }) => {
-  return (
-    <div onClick={() => deleteItem(id)}>
-      Delete Item
-      <style jsx>{`
-        div {
-          background: hsl(0, 100%, 30%);
-          padding: 0.7rem 1.2rem;
-          border-radius: 3px;
-          color: #fff;
-          border: 2px solid hsl(0, 100%, 30%);
-          cursor: pointer;
-
-          transition: all ease-in-out 0.2s;
-        }
-        div:hover {
-          background: hsla(0, 100%, 30%, 0.1);
-          color: hsl(0, 100%, 30%);
-        }
-      `}</style>
-    </div>
-  );
+    return (
+        <button onClick={() => deleteItem(id)} className="btn btn--danger">
+            Delete Item
+        </button>
+    );
 };
 
 export default connect(null, { deleteItem })(DeleteButton);
