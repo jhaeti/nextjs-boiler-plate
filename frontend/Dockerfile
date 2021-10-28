@@ -1,30 +1,16 @@
-FROM node:16.3.0-alpine3.11 as base
+FROM node:16.3.0-alpine3.11
 
-RUN mkdir /base
-WORKDIR /base
+WORKDIR /frontend
+
 COPY package*.json ./
+
+ENV NODE_ENV=production
+
 RUN npm install
-COPY . /base
 
+COPY . .
 
-FROM base AS build
-ENV NODE_ENV=production
-
-WORKDIR /build
-COPY --from=base /base ./
 RUN npm run build
-
-
-
-FROM base AS production
-ENV NODE_ENV=production
-
-WORKDIR /app
-COPY --from=build /build/package*.json ./
-COPY --from=build /build/.next ./.next
-COPY --from=build /build/public ./public
-
-RUN npm install next
 
 EXPOSE 3000
 

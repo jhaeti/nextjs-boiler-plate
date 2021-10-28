@@ -1,15 +1,15 @@
 const express = require("express");
 
 const Item = require("../models/item");
-const { auth } = require("./controllers/authMiddleware");
+const auth = require("./middleware/auth");
 
 const router = express.Router();
 
 // Gets all Items and spit in json all the items
 router.get("/api/items", async (req, res) => {
     try {
-        const items = await Item.find();
-        res.json(items).sort({ date: -1 });
+        const items = await Item.find().sort({ date: -1 });
+        res.json(items);
     } catch (e) {
         console.log(e);
     }
@@ -22,9 +22,9 @@ router.post("/api/items", auth, async (req, res) => {
 
     try {
         const user = await newUser.save();
-        res.json(user);
+        res.status(201).json(user);
     } catch (e) {
-        console.log(e);
+        res.sendStatus(500);
     }
 });
 

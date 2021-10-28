@@ -1,22 +1,13 @@
 const express = require("express");
 
-const { auth } = require("./controllers/authMiddleware");
+const auth = require("./middleware/auth");
 
-const User = require("../models/user");
-
-const route = express.Router();
+const router = express.Router();
 
 // Authorizing Users to ensure not loggin in always once not logged out
-route.get("/api/auth", auth, (req, res) => {
-    User.findById({ _id: req.user.id })
-        .select("-password")
-        .then((user) => {
-            const { token } = req;
-            res.json({ token, user });
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+router.get("/api/auth", auth, (req, res) => {
+    const { token, user } = req;
+    res.json({ token, user });
 });
 
-module.exports = route;
+module.exports = router;

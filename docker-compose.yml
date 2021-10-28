@@ -10,7 +10,7 @@ services:
         # container_name: mongo
         image: mvertes/alpine-mongo
         ports:
-            - "27017:27017"
+            - "27018:27017"
         volumes:
             - "mongo_data:/data/db"
     frontend:
@@ -26,7 +26,7 @@ services:
         build: /backend
         image: backend:v1
         deploy:
-            replicas: 4
+            replicas: 1
             update_config:
                 parallelism: 5
                 delay: 10s

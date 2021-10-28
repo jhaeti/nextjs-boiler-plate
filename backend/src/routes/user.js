@@ -1,7 +1,6 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { auth } = require("./controllers/authMiddleware");
+const auth = require("./middleware/auth");
+const { setCookie, clearCookie } = require("../controllers/cookies");
 
 const User = require("../models/user");
 
@@ -24,70 +23,58 @@ router.post("/api/users/register", async (req, res) => {
         }
 
         // Create new User if user does not exist
-        const newUser = new User({ name, email, password });
+        const newUser = new User({ name, email, password, token: [] });
 
         // Saving user with hash password into DataBase
         const registeredUser = await newUser.save();
-        jwt.sign(
-            { id: registeredUser.id },
-            process.env.JWT_SECRET_KEY,
-            (err, token) => {
-                const { name, email, id } = registeredUser;
-                if (err) throw err;
+        const token = await registeredUser.generateAuthToken();
+        const { id } = registeredUser;
+        // jwt.sign(
+        //     { id: registeredUser.id },
+        //     process.env.JWT_SECRET_KEY,
+        //     (err, token) => {
+        //         const { name, email, id } = registeredUser;
+        //         if (err) throw err;
 
-                // Saving token in coookies before sending data
-                res.cookie(process.env.AUTH_COOKIE_NAME, token, {
-                    httpOnly: true,
-                }).json({
-                    token,
-                    user: { name, email, id },
-                });
-            }
-        );
+        //         // Saving token in coookies before sending data
+        setCookie(res, process.env.AUTH_COOKIE_NAME, token);
+        res.status(201).json({
+            token,
+            user: { name, email, id },
+        });
+        //     }
+        // );
     } catch (e) {
-        res.status(500).send();
+        // res.status(500).send();
+        console.log(e);
     }
 });
 
 // Login Route
 router.post("/api/users/login", async (req, res) => {
-    const { email, password } = req.body;
-
-    // Basic validation
-    if (!email || !password) {
-        return res.status(400).json("Please enter all fields");
-    }
-
     try {
-        //   Check whether user already exist
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json("User doesnot exist");
-        }
-        //   Compare plain text Password to Hash Password
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json("Invalid credentials");
-        }
+        const { email, password } = req.body;
 
-        jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, (err, token) => {
-            const { name, email, id } = user;
-            if (err) throw err;
+        // Find user by credentials
+        const user = await User.findByCredentials(email, password);
 
-            // Saving token in coookies before sending data
-            res.cookie(process.env.AUTH_COOKIE_NAME, token, {
-                httpOnly: true,
-            }).json({ token, user: { name, email, id } });
-        });
+        // Generate token for that user
+        const token = await user.generateAuthToken();
+        setCookie(res, process.env.AUTH_COOKIE_NAME, token);
+
+        res.json(user);
     } catch (e) {
-        res.send(500);
+        res.status(400).json(e.message);
     }
 });
 
 // Handling Logout functionality
-router.get("/api/users/logout", auth, (req, res) => {
-    // Clear cookies from the browser and Server
-    res.clearCookie(process.env.AUTH_COOKIE_NAME).sendStatus(200);
+router.get("/api/users/logout", auth, async (req, res) => {
+    const user = req.user;
+    await user.removeToken(req.token);
+    // Clear cookies from the browser
+    clearCookie(res, process.env.AUTH_COOKIE_NAME);
+    res.sendStatus(200);
 });
 
 module.exports = router;

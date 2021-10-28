@@ -2,10 +2,6 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-require("dotenv").config();
-require("./db/mongoose");
-// require("./app");
-
 const authRouter = require("./routes/auth");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
