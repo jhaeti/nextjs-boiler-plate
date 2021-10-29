@@ -11,7 +11,7 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const getItems = () => (dispatch) => {
     dispatch({ type: IS_LOADING });
 
-    axios.get(`${apiUrl}/api/items`).then((res) =>
+    axios.get(`${apiUrl}/api/items`, { withCredentials: true }).then((res) =>
         dispatch({
             type: GET_ITEMS,
             payload: res.data,
