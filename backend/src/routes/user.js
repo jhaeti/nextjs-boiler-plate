@@ -66,6 +66,13 @@ router.get("/users/me", auth, (req, res) => {
     res.json({ token, user });
 });
 
+// Delete self from the databse
+router.delete("/users/me", auth, async (req, res) => {
+    const user = await req.user.remove();
+    clearCookie(res, process.env.AUTH_COOKIE_NAME);
+    res.json({ user });
+});
+
 // Handling Logout functionality
 router.get("/users/logout", auth, async (req, res) => {
     const user = req.user;

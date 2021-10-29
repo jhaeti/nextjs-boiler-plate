@@ -6,9 +6,10 @@ const auth = require("./middleware/auth");
 const router = express.Router();
 
 // Gets all Items and spit in json all the items
-router.get("/api/items", async (req, res) => {
+router.get("/api/items", auth, async (req, res) => {
     try {
-        const items = await Item.find().sort({ date: -1 });
+        await req.user.populate("items").execPopulate();
+        const items = req.user.items;
         res.json(items);
     } catch (e) {
         console.log(e);
@@ -18,7 +19,7 @@ router.get("/api/items", async (req, res) => {
 // Post an item to api/items
 router.post("/api/items", auth, async (req, res) => {
     const { name } = req.body;
-    const newUser = new Item({ name });
+    const newUser = new Item({ name, owner: req.user._id });
 
     try {
         const user = await newUser.save();
