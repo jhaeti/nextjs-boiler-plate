@@ -13,81 +13,81 @@ export const SET_MSG = "SET_MSG";
 
 // Attempt to login
 export const login = (user) => (dispatch) => {
-  axios
-    .post(`${apiUrl}/api/users/login`, user, {
-      withCredentials: true,
-    })
-    .then((res) => {
-      // Redirect to Homepage after successfully loggin in
-      Router.push("/");
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: LOGIN_FAIL,
-        payload: err.response,
-      });
-    });
+    axios
+        .post(`${apiUrl}/users/login`, user, {
+            withCredentials: true,
+        })
+        .then((res) => {
+            // Redirect to Homepage after successfully loggin in
+            Router.push("/");
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            dispatch({
+                type: LOGIN_FAIL,
+                payload: err.response,
+            });
+        });
 };
 
 export const setMsg = (msg) => {
-  return { type: SET_MSG, payload: msg };
+    return { type: SET_MSG, payload: msg };
 };
 
 // Attempt to logout a user
 export const logout = () => (dispatch) => {
-  axios
-    .get(`${apiUrl}/api/users/logout`, {
-      withCredentials: true,
-    })
-    .then((res) => dispatch({ type: LOGOUT_SUCCESS }));
+    axios
+        .get(`${apiUrl}/users/logout`, {
+            withCredentials: true,
+        })
+        .then((res) => dispatch({ type: LOGOUT_SUCCESS }));
 };
 
 // Attempt to load user on page reload
 export const loadUser = () => (dispatch) => {
-  axios
-    .get(`${apiUrl}/api/auth`, { withCredentials: true })
-    .then((res) => {
-      dispatch({
-        type: LOAD_USER_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: LOAD_USER_FAIL,
-        payload: err.response,
-      });
-    });
+    axios
+        .get(`${apiUrl}/users/me`, { withCredentials: true })
+        .then((res) => {
+            dispatch({
+                type: LOAD_USER_SUCCESS,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            dispatch({
+                type: LOAD_USER_FAIL,
+                payload: err.response,
+            });
+        });
 };
 
 // Attempt to register a user
 export const register = (user) => (dispatch) => {
-  axios
-    .post(`${apiUrl}/api/users/register`, user, {
-      withCredentials: true,
-    })
-    .then((res) => {
-      // Redirect to the Homepage after successfully registering
-      Router.push("/");
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch({
-        type: REGISTER_FAIL,
-        payload: err.response,
-      });
-    });
+    axios
+        .post(`${apiUrl}/users/register`, user, {
+            withCredentials: true,
+        })
+        .then((res) => {
+            // Redirect to the Homepage after successfully registering
+            Router.push("/");
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: res.data,
+            });
+        })
+        .catch((err) => {
+            dispatch({
+                type: REGISTER_FAIL,
+                payload: err.response,
+            });
+        });
 };
 
 export const clearMsg = () => {
-  return {
-    type: CLEAR_MSG,
-  };
+    return {
+        type: CLEAR_MSG,
+    };
 };
