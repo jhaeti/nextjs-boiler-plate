@@ -17,8 +17,8 @@ router.post("/api/users/register", async (req, res) => {
 
     try {
         //   Check whether user already exist
-        const user = await User.findOne({ email });
-        if (user) {
+        const previousUser = await User.findOne({ email });
+        if (previousUser) {
             return res.status(400).json("User already exist");
         }
 
@@ -26,21 +26,13 @@ router.post("/api/users/register", async (req, res) => {
         const newUser = new User({ name, email, password, token: [] });
 
         // Saving user with hash password into DataBase
-        const registeredUser = await newUser.save();
-        const token = await registeredUser.generateAuthToken();
-        const { id } = registeredUser;
-        // jwt.sign(
-        //     { id: registeredUser.id },
-        //     process.env.JWT_SECRET_KEY,
-        //     (err, token) => {
-        //         const { name, email, id } = registeredUser;
-        //         if (err) throw err;
+        const user = await newUser.save();
+        const token = await user.generateAuthToken();
 
-        //         // Saving token in coookies before sending data
         setCookie(res, process.env.AUTH_COOKIE_NAME, token);
         res.status(201).json({
             token,
-            user: { name, email, id },
+            user,
         });
         //     }
         // );
@@ -62,7 +54,7 @@ router.post("/api/users/login", async (req, res) => {
         const token = await user.generateAuthToken();
         setCookie(res, process.env.AUTH_COOKIE_NAME, token);
 
-        res.json(user);
+        res.json({ token, user });
     } catch (e) {
         res.status(400).json(e.message);
     }
