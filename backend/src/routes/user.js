@@ -7,7 +7,7 @@ const User = require("../models/user");
 const router = express.Router();
 
 // Register Route
-router.post("/api/users/register", async (req, res) => {
+router.post("/users/register", async (req, res) => {
     const { name, email, password } = req.body;
 
     // Basic validation
@@ -43,7 +43,7 @@ router.post("/api/users/register", async (req, res) => {
 });
 
 // Login Route
-router.post("/api/users/login", async (req, res) => {
+router.post("/users/login", async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -60,8 +60,14 @@ router.post("/api/users/login", async (req, res) => {
     }
 });
 
+// Getting user just from having correct cookies set
+router.get("/users/me", auth, (req, res) => {
+    const { token, user } = req;
+    res.json({ token, user });
+});
+
 // Handling Logout functionality
-router.get("/api/users/logout", auth, async (req, res) => {
+router.get("/users/logout", auth, async (req, res) => {
     const user = req.user;
     await user.removeToken(req.token);
     // Clear cookies from the browser

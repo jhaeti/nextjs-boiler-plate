@@ -6,7 +6,6 @@ require("dotenv").config();
 require("./db/mongoose");
 // require("./app");
 
-const authRouter = require("./routes/auth");
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
 
@@ -22,8 +21,7 @@ app.use(
 );
 app.use(express.json({ extended: false }));
 
-// Connect To route below
-app.use(authRouter);
+// Using routers
 app.use(itemRouter);
 app.use(userRouter);
 
