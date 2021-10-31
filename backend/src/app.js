@@ -2,7 +2,9 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
-const authRouter = require("./routes/auth");
+require("dotenv").config();
+require("./db/mongoose");
+
 const itemRouter = require("./routes/item");
 const userRouter = require("./routes/user");
 
@@ -18,11 +20,8 @@ app.use(
 );
 app.use(express.json({ extended: false }));
 
-// Connect To route below
-app.use(authRouter);
+// Using routers
 app.use(itemRouter);
 app.use(userRouter);
 
-const port = process.env.PORT;
-
-app.listen(port, console.log(`Server started on port ${port}`));
+module.exports = app;

@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 const uri =
     process.env.NODE_ENV === "production"
         ? process.env.MONGO_URI
+        : process.env.NODE_ENV === "test"
+        ? process.env.MONGO_TEST_URI
         : process.env.MONGO_DEV_URI;
 
-// Connect to mongodb using mongoose
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.set("useCreateIndex", true);
+// Connect to mongoDB
 mongoose.connect(
     uri,
     {
