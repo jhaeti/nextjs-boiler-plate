@@ -27,7 +27,7 @@ const auth = async (req, res, next) => {
         req.token = token;
         next();
     } catch (e) {
-        res.status(400).json(e.message);
+        res.status(401).json(e.message);
     }
 };
 
