@@ -34,11 +34,8 @@ router.post("/users/register", async (req, res) => {
             token,
             user,
         });
-        //     }
-        // );
     } catch (e) {
-        // res.status(500).send();
-        console.log(e);
+        res.status(500).send();
     }
 });
 
