@@ -18,3 +18,24 @@ mongoose.connect(
     },
     () => console.log("MongoDb connected...")
 );
+
+const {
+    DEFAULT_ADMIN_NAME: name,
+    DEFAULT_ADMIN_EMAIL: email,
+    DEFAULT_ADMIN_PASSWORD: password,
+} = process.env;
+
+const User = require("../models/user");
+const defaultAdminUser = new User({ name, email, password, role: "ADMIN" });
+User.findOne({ email })
+    .then((user) => {
+        if (user === null) {
+            return User.find();
+        }
+    })
+    .then(async (users) => {
+        if (users && users.length === 0) {
+            await defaultAdminUser.save();
+        }
+    })
+    .catch((e) => console.log(e));
