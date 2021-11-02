@@ -29,6 +29,11 @@ const userSchema = new mongoose.Schema({
             },
         },
     ],
+    role: {
+        type: String,
+        default: "BASIC",
+        required: true,
+    },
 });
 
 userSchema.virtual("items", {
