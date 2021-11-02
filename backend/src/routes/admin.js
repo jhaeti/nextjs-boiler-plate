@@ -30,7 +30,7 @@ router.delete("/admin/items/:id", auth, adminAuth, async (req, res) => {
     try {
         const id = req.params;
         const item = Item.findByIdAndDelete(id);
-        res.status(101).json(item);
+        res.status(200).json(item);
     } catch (e) {
         res.sendStatus(500);
     }
