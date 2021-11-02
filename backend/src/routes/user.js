@@ -23,7 +23,7 @@ router.post("/users/register", async (req, res) => {
         }
 
         // Create new User if user does not exist
-        const newUser = new User({ name, email, password, token: [] });
+        const newUser = new User({ ...req.body, token: [] });
 
         // Saving user with hash password into DataBase
         const user = await newUser.save();
