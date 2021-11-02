@@ -33,11 +33,18 @@ router.post("/api/items", auth, async (req, res) => {
 router.delete("/api/items/:id", auth, async (req, res) => {
     const { id } = req.params;
     try {
-        const item = await Item.findById({ _id: id });
-        await item.remove();
-        res.json({ success: true });
+        const item = await Item.findOneAndDelete({
+            _id: id,
+            owner: req.user.id,
+        });
+
+        if (item === null) {
+            return res.sendStatus(401);
+        }
+
+        res.json(`${item.name} is deleted successfully`);
     } catch (e) {
-        res.json({ success: false });
+        res.sendStatus(500);
     }
 });
 
